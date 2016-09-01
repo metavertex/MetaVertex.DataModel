@@ -26,5 +26,10 @@ namespace MetaVertex.DataModel.Db2
         public int Index { get; }
 
         public string ColumnName { get; }
+
+        /// <summary>
+        /// If true, values on this field will be trimmed.
+        /// </summary>
+        public bool AutoTrim { get; set; }
     }
 }
