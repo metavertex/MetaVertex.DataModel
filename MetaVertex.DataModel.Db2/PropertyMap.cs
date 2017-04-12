@@ -19,6 +19,8 @@ namespace MetaVertex.DataModel.Db2
 
         public string ColumnName { get; set; }
 
+        public ICollection<IValueModifier> Modifiers { get; } = new List<IValueModifier>();
+
         public PropertyInfo PropInfo { get; }
 
         public MethodInfo Setter { get; }

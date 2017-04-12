@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,18 +19,32 @@ namespace MetaVertex.DataModel.Db2
         public Type ModelType { get; }
         public List<PropertyMap> Properties { get; } = new List<PropertyMap>();
 
+        public bool AutoTrim { get; set; }
+
         internal static ModelMap GetMap(Type modelType)
         {
             if (_maps.ContainsKey(modelType))
                 return _maps[modelType];
 
             var map = new ModelMap(modelType);
-            map.Properties.AddRange(GetPropertyMaps(modelType));
+            ApplyAttributes(modelType, map);
+
+            map.Properties.AddRange(GetPropertyMaps(map, modelType));
 
             return _maps[modelType] = map;
         }
 
-        private static IEnumerable<PropertyMap> GetPropertyMaps(Type modelType)
+        private static void ApplyAttributes(Type modelType, ModelMap map)
+        {
+            var attr = modelType.GetCustomAttribute<DataModelAttribute>();
+
+            if (attr == null)
+                return;
+
+            map.AutoTrim = attr.AutoTrim;
+        }
+
+        private static IEnumerable<PropertyMap> GetPropertyMaps(ModelMap modelMap, Type modelType)
         {
             foreach (var prop in modelType.GetProperties())
             {
@@ -38,12 +53,20 @@ namespace MetaVertex.DataModel.Db2
                 if (attr == null)
                     continue;
 
-                yield return new PropertyMap(prop)
+                var map = new PropertyMap(prop)
                 {
                     ColumnName = attr.ColumnName,
                 };
+
+                var trimmer = new Lazy<AutoTrimValueModifier>(() => new AutoTrimValueModifier());
+
+                if (modelMap.AutoTrim || attr.AutoTrim)
+                    map.Modifiers.Add(trimmer.Value);
+
+                yield return map;
             }
 
         }
+
     }
 }

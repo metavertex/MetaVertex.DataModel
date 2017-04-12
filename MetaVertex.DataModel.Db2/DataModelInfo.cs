@@ -11,7 +11,7 @@ namespace MetaVertex.DataModel.Db2
     /// Contains the metadata necessary to map strongly-typed models from a data reader.
     /// </summary>
     /// <typeparam name="T">The type of model for which data will be extracted from the data reader.</typeparam>
-    public class DataModelInfo<T> : DataModelInfo
+    public class DataModelInfo<T>
     {
         private readonly List<ReaderFieldInfo> _infos;
         private readonly Func<iDB2DataReader, T> _creator;
@@ -44,34 +44,23 @@ namespace MetaVertex.DataModel.Db2
         {
             var value = DataReader.GetValue(fieldInfo.ColumnIndex);
 
-            fieldInfo.PropertyMap.Setter.Invoke(model, new[] { value });
-        }
-    }
+            value = fieldInfo.PropertyMap.Modifiers.Aggregate(value,
+                (current, modifier) => modifier.ModifyValue(current, fieldInfo));
 
-    public abstract class DataModelInfo
-    {
-        internal class ReaderFieldInfo
-        {
-            public static IEnumerable<ReaderFieldInfo> GetInfos(ModelMap map, iDB2DataReader reader)
+            try
             {
-                for (var i = 0; i < reader.FieldCount; i++)
-                {
-                    var columnName = reader.GetName(i);
-
-                    var prop = map.Properties.FirstOrDefault(p => p.ColumnName == columnName);
-
-                    if (prop != null)
-                        yield return new ReaderFieldInfo
-                        {
-                            ColumnIndex = i,
-                            PropertyMap = prop,
-                        };
-                }
+                fieldInfo.PropertyMap.Setter.Invoke(model, new[] { value });
             }
+            catch (ArgumentException ex)
+            {
+                const string msg = "Could not set property '{0}' to value '{1}' from column '{2}' of type '{3}' ({4})";
 
-            public int ColumnIndex { get; private set; }
-            public PropertyMap PropertyMap { get; private set; }
+                throw new InvalidOperationException(string.Format(msg, fieldInfo.PropertyMap.PropertyName, value,
+                    fieldInfo.PropertyMap.ColumnName, DataReader.GetFieldType(fieldInfo.ColumnIndex),
+                    DataReader.GetDataTypeName(fieldInfo.ColumnIndex)), ex);
+            }
         }
 
     }
+
 }
