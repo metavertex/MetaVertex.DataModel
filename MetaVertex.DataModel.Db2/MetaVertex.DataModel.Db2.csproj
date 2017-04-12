@@ -12,6 +12,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="IBM.Data.DB2.iSeries" Version="7.1.0" />
-    <PackageReference Include="MetaVertex.DataModel" Version="0.2.0-a008" />
+    <PackageReference Include="MetaVertex.DataModel" Version="0.2.0-a011" />
   </ItemGroup>
 </Project>

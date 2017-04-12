@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MetaVertex.DataModel.Db2
+namespace MetaVertex.DataModel
 {
     public static class DataModelExtensions
     {
