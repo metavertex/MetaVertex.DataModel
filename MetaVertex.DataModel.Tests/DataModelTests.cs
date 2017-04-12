@@ -1,26 +1,25 @@
 using System;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace MetaVertex.DataModel.Tests
 {
-    [TestClass]
     public class DataModelTests
     {
-        [TestMethod]
+        [Fact]
         public void CreateModelMap()
         {
             var type = typeof(MyTestModel);
             var map = ModelMap.GetMap(type);
 
-            Assert.IsNotNull(map);
-            Assert.AreEqual(type, map.ModelType);
-            Assert.AreEqual(4, map.Properties.Count);
+            Assert.NotNull(map);
+            Assert.Equal(type, map.ModelType);
+            Assert.Equal(4, map.Properties.Count);
 
-            Assert.IsTrue(HasPropertyType(map, nameof(MyTestModel.Name), "NAME", typeof(string)));
-            Assert.IsTrue(HasPropertyType(map, nameof(MyTestModel.StartDate), "START_DATE", typeof(DateTime)));
-            Assert.IsTrue(HasPropertyType(map, nameof(MyTestModel.ItemCount), "ITEM_COUNT", typeof(int)));
-            Assert.IsTrue(HasPropertyType(map, nameof(MyTestModel.Cost), "ITEM_COST", typeof(decimal)));
+            Assert.True(HasPropertyType(map, nameof(MyTestModel.Name), "NAME", typeof(string)));
+            Assert.True(HasPropertyType(map, nameof(MyTestModel.StartDate), "START_DATE", typeof(DateTime)));
+            Assert.True(HasPropertyType(map, nameof(MyTestModel.ItemCount), "ITEM_COUNT", typeof(int)));
+            Assert.True(HasPropertyType(map, nameof(MyTestModel.Cost), "ITEM_COST", typeof(decimal)));
         }
 
         private bool HasPropertyType(ModelMap map, string propertyName, string columnName, Type type)
@@ -28,7 +27,7 @@ namespace MetaVertex.DataModel.Tests
             return map.Properties.Any(p => p.ColumnName == columnName && p.PropertyName == propertyName && p.PropertyType == type);
         }
 
-        //[TestMethod]
+        //[Fact]
         public void CreateModelFromDataReader()
         {
             // TODO mock & test DbDataReader here

@@ -1,19 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net451</TargetFramework>
-    <VersionPrefix>0.1.0</VersionPrefix>
+    <TargetFramework>net461</TargetFramework>
+    <VersionPrefix>0.2.0</VersionPrefix>
     <Company>MetaVertex</Company>
     <Authors>Toby Johnson</Authors>
     <Description>Create strongly-typed data models from IBM.Data.DB2.iSeries.iDB2DataReader</Description>
     <Copyright>Copyright 2017</Copyright>
-    <PackageLicenseUrl>https://github.com/metavertex/MetaVertex.DataModel.Db2/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/metavertex/MetaVertex.DataModel.Db2</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/metavertex/MetaVertex.DataModel.Db2</RepositoryUrl>
+    <PackageLicenseUrl>https://github.com/metavertex/MetaVertex.DataModel/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/metavertex/MetaVertex.DataModel</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/metavertex/MetaVertex.DataModel</RepositoryUrl>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="IBM.Data.DB2.iSeries" Version="7.1.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MetaVertex.DataModel\MetaVertex.DataModel.csproj" />
+    <PackageReference Include="MetaVertex.DataModel" Version="0.2.0-a008" />
   </ItemGroup>
 </Project>

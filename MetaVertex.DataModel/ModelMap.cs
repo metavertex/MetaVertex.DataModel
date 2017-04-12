@@ -36,7 +36,7 @@ namespace MetaVertex.DataModel
 
         private static void ApplyAttributes(Type modelType, ModelMap map)
         {
-            var attr = modelType.GetCustomAttribute<DataModelAttribute>();
+            var attr = modelType.GetTypeInfo().GetCustomAttribute<DataModelAttribute>();
 
             if (attr == null)
                 return;
