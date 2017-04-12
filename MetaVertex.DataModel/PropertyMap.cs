@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MetaVertex.DataModel.Db2
+namespace MetaVertex.DataModel
 {
     internal class PropertyMap
     {

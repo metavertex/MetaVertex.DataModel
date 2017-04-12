@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MetaVertex.DataModel.Db2
+namespace MetaVertex.DataModel
 {
     public sealed class DataFieldAttribute : Attribute
     {

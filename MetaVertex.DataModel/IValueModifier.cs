@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MetaVertex.DataModel.Db2
+namespace MetaVertex.DataModel
 {
     /// <summary>
     /// Describes a means to modify the value returned from the data reader before it's set on the model.

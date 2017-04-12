@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IBM.Data.DB2.iSeries;
 
-namespace MetaVertex.DataModel.Db2
+namespace MetaVertex.DataModel
 {
     /// <summary>
     /// Contains the metadata necessary to map strongly-typed models from a data reader.
@@ -14,9 +14,9 @@ namespace MetaVertex.DataModel.Db2
     public class DataModelInfo<T>
     {
         private readonly List<ReaderFieldInfo> _infos;
-        private readonly Func<iDB2DataReader, T> _creator;
+        private readonly Func<DbDataReader, T> _creator;
 
-        public DataModelInfo(iDB2DataReader reader, Func<iDB2DataReader, T> creator)
+        public DataModelInfo(DbDataReader reader, Func<DbDataReader, T> creator)
         {
             DataReader = reader ?? throw new ArgumentNullException(nameof(reader));
             _creator = creator ?? throw new ArgumentNullException(nameof(creator));
@@ -26,7 +26,7 @@ namespace MetaVertex.DataModel.Db2
             _infos = new List<ReaderFieldInfo>(ReaderFieldInfo.GetInfos(map, reader));
         }
 
-        public iDB2DataReader DataReader { get; }
+        public DbDataReader DataReader { get; }
 
         public T GetModel()
         {

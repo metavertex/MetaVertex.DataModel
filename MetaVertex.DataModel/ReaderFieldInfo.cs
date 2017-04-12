@@ -2,7 +2,7 @@
 using System.Data.Common;
 using System.Linq;
 
-namespace MetaVertex.DataModel.Db2
+namespace MetaVertex.DataModel
 {
     /// <summary>
     /// Contains information linking the column from a data reader with the property on the model type.

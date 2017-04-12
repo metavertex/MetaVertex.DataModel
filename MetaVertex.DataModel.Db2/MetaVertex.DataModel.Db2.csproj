@@ -13,4 +13,7 @@
   <ItemGroup>
     <PackageReference Include="IBM.Data.DB2.iSeries" Version="7.1.0" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MetaVertex.DataModel\MetaVertex.DataModel.csproj" />
+  </ItemGroup>
 </Project>
