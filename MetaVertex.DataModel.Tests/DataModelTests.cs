@@ -1,9 +1,8 @@
 using System;
 using System.Linq;
-//using IBM.Data.DB2.iSeries;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace MetaVertex.DataModel.Db2.Tests
+namespace MetaVertex.DataModel.Tests
 {
     [TestClass]
     public class DataModelTests
@@ -32,7 +31,7 @@ namespace MetaVertex.DataModel.Db2.Tests
         //[TestMethod]
         public void CreateModelFromDataReader()
         {
-            // TODO mock & test iDB2DataReader here
+            // TODO mock & test DbDataReader here
         }
     }
 }

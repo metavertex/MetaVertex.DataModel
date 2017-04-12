@@ -1,3 +1,3 @@
 ﻿using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("MetaVertex.DataModel.Db2.Tests")]
+[assembly: InternalsVisibleTo("MetaVertex.DataModel.Tests")]

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MetaVertex.DataModel.Db2.Tests
+namespace MetaVertex.DataModel.Tests
 {
     public class MyTestModel
     {

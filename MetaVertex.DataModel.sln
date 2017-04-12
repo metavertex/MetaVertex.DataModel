@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26403.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaVertex.DataModel.Db2", "MetaVertex.DataModel.Db2\MetaVertex.DataModel.Db2.csproj", "{898294EB-774B-4DFA-8928-1759C9220CF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaVertex.DataModel.Db2.Tests", "MetaVertex.DataModel.Db2.Tests\MetaVertex.DataModel.Db2.Tests.csproj", "{C700BD58-B1D3-42DB-98B5-EDA7C027945D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaVertex.DataModel.Tests", "MetaVertex.DataModel.Tests\MetaVertex.DataModel.Tests.csproj", "{C700BD58-B1D3-42DB-98B5-EDA7C027945D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaVertex.DataModel", "MetaVertex.DataModel\MetaVertex.DataModel.csproj", "{B4703A96-F852-43D6-963A-391E8A82EB8E}"
 EndProject
