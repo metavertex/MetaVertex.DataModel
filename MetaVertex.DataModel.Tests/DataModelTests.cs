@@ -10,7 +10,7 @@ namespace MetaVertex.DataModel.Tests
         public void CreateModelMap()
         {
             var type = typeof(MyTestModel);
-            var map = ModelMap.GetMap(type);
+            var map = ResultModelMap.GetMap(type);
 
             Assert.NotNull(map);
             Assert.Equal(type, map.ModelType);
@@ -22,7 +22,7 @@ namespace MetaVertex.DataModel.Tests
             Assert.True(HasPropertyType(map, nameof(MyTestModel.Cost), "ITEM_COST", typeof(decimal)));
         }
 
-        private bool HasPropertyType(ModelMap map, string propertyName, string columnName, Type type)
+        private bool HasPropertyType(ResultModelMap map, string propertyName, string columnName, Type type)
         {
             return map.Properties.Any(p => p.ColumnName == columnName && p.PropertyName == propertyName && p.PropertyType == type);
         }

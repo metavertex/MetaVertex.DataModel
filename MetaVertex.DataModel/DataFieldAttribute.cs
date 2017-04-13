@@ -5,6 +5,11 @@ using System.Threading.Tasks;
 
 namespace MetaVertex.DataModel
 {
+    /// <summary>
+    /// Identifies a property on a data model which will have its value mapped from the
+    /// specified result set field.
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Property)]
     public sealed class DataFieldAttribute : Attribute
     {
         public DataFieldAttribute(int index)

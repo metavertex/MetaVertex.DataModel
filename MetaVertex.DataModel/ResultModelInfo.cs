@@ -8,27 +8,27 @@ using System.Threading.Tasks;
 namespace MetaVertex.DataModel
 {
     /// <summary>
-    /// Contains the metadata necessary to map strongly-typed models from a data reader.
+    /// Creates models of the specified type from a data reader instance.
     /// </summary>
-    /// <typeparam name="T">The type of model for which data will be extracted from the data reader.</typeparam>
-    public class DataModelInfo<T>
+    /// <typeparam name="TModel">The type of model for which data will be extracted from the data reader.</typeparam>
+    public class ResultModelInfo<TModel>
     {
         private readonly List<ReaderFieldInfo> _infos;
-        private readonly Func<DbDataReader, T> _creator;
+        private readonly Func<DbDataReader, TModel> _creator;
 
-        public DataModelInfo(DbDataReader reader, Func<DbDataReader, T> creator)
+        public ResultModelInfo(DbDataReader reader, Func<DbDataReader, TModel> creator)
         {
             DataReader = reader ?? throw new ArgumentNullException(nameof(reader));
             _creator = creator ?? throw new ArgumentNullException(nameof(creator));
 
-            var map = ModelMap.GetMap(typeof(T));
+            var map = ResultModelMap.GetMap(typeof(TModel));
 
             _infos = new List<ReaderFieldInfo>(ReaderFieldInfo.GetInfos(map, reader));
         }
 
         public DbDataReader DataReader { get; }
 
-        public T GetModel()
+        public TModel GetModel()
         {
             var model = _creator(DataReader);
 
@@ -40,7 +40,7 @@ namespace MetaVertex.DataModel
             return model;
         }
 
-        private void ApplyFieldInfo(T model, ReaderFieldInfo fieldInfo)
+        private void ApplyFieldInfo(TModel model, ReaderFieldInfo fieldInfo)
         {
             var value = DataReader.GetValue(fieldInfo.ColumnIndex);
 

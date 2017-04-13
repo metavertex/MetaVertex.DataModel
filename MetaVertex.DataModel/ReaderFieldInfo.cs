@@ -9,7 +9,7 @@ namespace MetaVertex.DataModel
     /// </summary>
     internal class ReaderFieldInfo
     {
-        public static IEnumerable<ReaderFieldInfo> GetInfos(ModelMap map, DbDataReader reader)
+        public static IEnumerable<ReaderFieldInfo> GetInfos(ResultModelMap map, DbDataReader reader)
         {
             for (var i = 0; i < reader.FieldCount; i++)
             {
@@ -27,7 +27,7 @@ namespace MetaVertex.DataModel
         }
 
         public int ColumnIndex { get; private set; }
-        public PropertyMap PropertyMap { get; private set; }
+        public ResultPropertyMap PropertyMap { get; private set; }
     }
 
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace MetaVertex.DataModel
 {
+    [AttributeUsage(AttributeTargets.Class)]
     public sealed class DataModelAttribute : Attribute
     {
         /// <summary>
