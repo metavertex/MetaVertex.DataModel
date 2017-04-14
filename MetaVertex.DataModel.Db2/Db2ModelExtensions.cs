@@ -10,15 +10,15 @@ namespace MetaVertex.DataModel.Db2
 {
     public static class Db2ModelExtensions
     {
-        public static DataModelInfo<T> GetModelInfo<T>(this iDB2DataReader reader)
+        public static ResultModelInfo<T> GetModelInfo<T>(this iDB2DataReader reader)
             where T : new()
         {
-            return new DataModelInfo<T>(reader, r => new T());
+            return new ResultModelInfo<T>(reader, r => new T());
         }
 
-        public static DataModelInfo<T> GetModelInfo<T>(this iDB2DataReader reader, Func<DbDataReader, T> creator)
+        public static ResultModelInfo<T> GetModelInfo<T>(this iDB2DataReader reader, Func<DbDataReader, T> creator)
         {
-            return new DataModelInfo<T>(reader, creator);
+            return new ResultModelInfo<T>(reader, creator);
         }
     }
 

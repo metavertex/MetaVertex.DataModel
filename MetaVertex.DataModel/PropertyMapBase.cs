@@ -36,6 +36,16 @@ namespace MetaVertex.DataModel
 
         public Type PropertyType => PropInfo.PropertyType;
 
+        public object GetValue(object model)
+        {
+            return Getter.Invoke(model, null);
+        }
+
+        public void SetValue(object model, object value)
+        {
+            Setter.Invoke(model, new[] { value });
+        }
+
         public MethodInfo Getter { get; }
 
         public MethodInfo Setter { get; }

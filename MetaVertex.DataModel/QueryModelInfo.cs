@@ -61,5 +61,11 @@ namespace MetaVertex.DataModel
         public TModel Model { get; }
 
         internal QueryModelMap Map => _map.Value;
+
+        protected void SetParameterValues(QueryPropertyMap map, DbParameter parm)
+        {
+            parm.Value = map.GetValue(Model);
+            parm.Direction = map.ParameterDirection;
+        }
     }
 }
