@@ -13,16 +13,16 @@ namespace MetaVertex.DataModel.Tests
             var type = typeof(TestResultModel);
             var map = GetRequiredResultModelMap(type);
             Assert.Equal(type, map.ModelType);
-            Assert.Equal(4, map.Properties.Count);
+            Assert.Equal(4, map.PropertyMaps.Count);
 
             bool HasMatchingProperty(string propertyName, string columnName, Type propertyType)
             {
-                return map.Properties.Any(p => p.ColumnName == columnName && p.PropertyName == propertyName && p.PropertyType == propertyType);
+                return map.PropertyMaps.Any(p => p.ColumnName == columnName && p.PropertyName == propertyName && p.PropertyType == propertyType);
             }
 
-            Assert.True(HasMatchingProperty(nameof(TestResultModel.Name), "NAME", typeof(string)));
-            Assert.True(HasMatchingProperty(nameof(TestResultModel.StartDate), "START_DATE", typeof(DateTime)));
-            Assert.True(HasMatchingProperty(nameof(TestResultModel.ItemCount), "ITEM_COUNT", typeof(int)));
+            Assert.True(HasMatchingProperty(nameof(TestResultModel.Name), "NameField", typeof(string)));
+            Assert.True(HasMatchingProperty(nameof(TestResultModel.StartDate), "BeginDate", typeof(DateTime)));
+            Assert.True(HasMatchingProperty(nameof(TestResultModel.ItemCount), nameof(TestResultModel.ItemCount), typeof(int)));
             Assert.True(HasMatchingProperty(nameof(TestResultModel.Cost), "ITEM_COST", typeof(decimal)));
         }
 
@@ -31,11 +31,11 @@ namespace MetaVertex.DataModel.Tests
         {
             var map = GetRequiredResultModelMap(typeof(TestResultModel));
 
-            var propMap = GetRequiredPropertyMap(map.Properties, nameof(TestResultModel.Name));
+            var propMap = GetRequiredPropertyMap(map.PropertyMaps, nameof(TestResultModel.Name));
 
             Assert.Equal(1, propMap.Modifiers.Count(m => m is AutoTrimValueModifier));
 
-            propMap = GetRequiredPropertyMap(map.Properties, nameof(TestResultModel.StartDate));
+            propMap = GetRequiredPropertyMap(map.PropertyMaps, nameof(TestResultModel.StartDate));
             Assert.Equal(0, propMap.Modifiers.Count(m => m is AutoTrimValueModifier));
         }
 
@@ -45,11 +45,11 @@ namespace MetaVertex.DataModel.Tests
             var type = typeof(TestQueryModel);
             var map = GetRequiredQueryModelMap(type);
             Assert.Equal(type, map.ModelType);
-            Assert.Equal(4, map.Properties.Count);
+            Assert.Equal(4, map.PropertyMaps.Count);
 
             bool HasMatchingProperty(string propertyName, string parameterName, int index)
             {
-                return map.Properties.Any(p => p.PropertyName == propertyName && p.ParameterName == parameterName
+                return map.PropertyMaps.Any(p => p.PropertyName == propertyName && p.ParameterName == parameterName
                     && p.Index == index);
             }
 

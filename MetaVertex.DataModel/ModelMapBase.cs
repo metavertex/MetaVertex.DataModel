@@ -25,13 +25,19 @@ namespace MetaVertex.DataModel
         }
 
         public Type ModelType { get; }
-        public List<TPropertyMap> Properties { get; } = new List<TPropertyMap>();
+
+        public List<TPropertyMap> PropertyMaps { get; } = new List<TPropertyMap>();
+
+        internal IEnumerable<TPropertyMap> GetOrderedMaps()
+        {
+            return PropertyMaps.OrderBy(m => m.Index);
+        }
 
         public bool AutoTrim { get; set; }
 
         private void CreatePropertyMaps()
         {
-            Properties.AddRange(GetPropertyMaps());
+            PropertyMaps.AddRange(GetPropertyMaps());
         }
 
         private IEnumerable<TPropertyMap> GetPropertyMaps()

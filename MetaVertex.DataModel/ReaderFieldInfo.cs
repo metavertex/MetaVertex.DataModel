@@ -15,7 +15,7 @@ namespace MetaVertex.DataModel
             {
                 var columnName = reader.GetName(i);
 
-                var prop = map.Properties.FirstOrDefault(p => p.ColumnName == columnName);
+                var prop = map.PropertyMaps.FirstOrDefault(p => p.ColumnName == columnName);
 
                 if (prop != null)
                     yield return new ReaderFieldInfo
