@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace MetaVertex.DataModel.Tests
 {
-    public class MyTestModel
+    public class TestResultModel
     {
-        [DataField("NAME")]
+        [DataColumn("NameField", AutoTrim = true)]
         public string Name { get; set; }
 
-        [DataField("START_DATE")]
+        [DataColumn("BeginDate")]
         public DateTime StartDate { get; set; }
 
-        [DataField("ITEM_COUNT")]
+        [DataColumn]
         public int ItemCount { get; set; }
 
-        [DataField("ITEM_COST")]
+        [DataColumn("ITEM_COST")]
         public decimal Cost { get; set; }
 
         public string NonMappedValue { get; set; }

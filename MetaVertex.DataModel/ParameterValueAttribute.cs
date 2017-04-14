@@ -11,12 +11,27 @@ namespace MetaVertex.DataModel
     /// on a <see cref="DbCommand"/>.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
-    public sealed class ParameterValueAttribute : Attribute
+    public sealed class ParameterValueAttribute : DataItemAttributeBase
     {
-        public string ParameterName { get; set; }
+        /// <inheritdoc />
+        public ParameterValueAttribute()
+        {
+        }
 
-        public int Index { get; set; }
+        /// <inheritdoc />
+        public ParameterValueAttribute(string name)
+            : base(name)
+        {
+        }
+
+        /// <inheritdoc />
+        public ParameterValueAttribute(int index)
+            : base(index)
+        {
+        }
 
         public ParameterDirection ParameterDirection { get; set; } = ParameterDirection.Input;
+
+        public DbType DbType { get; set; }
     }
 }

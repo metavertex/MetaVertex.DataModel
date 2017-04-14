@@ -10,27 +10,24 @@ namespace MetaVertex.DataModel
     /// specified result set field.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
-    public sealed class DataFieldAttribute : Attribute
+    public sealed class DataColumnAttribute : DataItemAttributeBase
     {
-        public DataFieldAttribute(int index)
+        /// <inheritdoc />
+        public DataColumnAttribute()
         {
-            if (index < 1)
-                throw new ArgumentException("Index must not be negative");
-
-            Index = index;
         }
 
-        public DataFieldAttribute(string columnName)
+        /// <inheritdoc />
+        public DataColumnAttribute(string name)
+            : base(name)
         {
-            if (string.IsNullOrEmpty(columnName))
-                throw new ArgumentException("Column name cannot be null or empty", nameof(columnName));
-
-            ColumnName = columnName;
         }
 
-        public int Index { get; }
-
-        public string ColumnName { get; }
+        /// <inheritdoc />
+        public DataColumnAttribute(int index)
+            : base(index)
+        {
+        }
 
         /// <summary>
         /// If true, values on this field will be trimmed.

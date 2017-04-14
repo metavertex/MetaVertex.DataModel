@@ -13,6 +13,8 @@ namespace MetaVertex.DataModel
         public QueryModelInfo(TModel model)
         {
             Model = model;
+
+            var map = QueryModelMap.GetMap(typeof(TModel));
         }
 
         public TModel Model { get; }

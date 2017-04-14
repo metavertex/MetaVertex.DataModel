@@ -10,7 +10,7 @@ namespace MetaVertex.DataModel
     public sealed class DataModelAttribute : Attribute
     {
         /// <summary>
-        /// If true, all string fields on this model will be trimmed, regardless of their <see cref="DataFieldAttribute.AutoTrim"/>
+        /// If true, all string fields on this model will be trimmed, regardless of their <see cref="DataColumnAttribute.AutoTrim"/>
         /// value.
         /// </summary>
         public bool AutoTrim { get; set; }

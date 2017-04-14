@@ -8,6 +8,8 @@ namespace MetaVertex.DataModel
 {
     internal class AutoTrimValueModifier : IValueModifier
     {
+        public static AutoTrimValueModifier Instance => SingletonFactory<AutoTrimValueModifier>.GetSingleton();
+
         /// <inheritdoc />
         public object ModifyValue(object value, ReaderFieldInfo fieldInfo)
         {

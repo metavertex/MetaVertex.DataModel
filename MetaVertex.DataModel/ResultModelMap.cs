@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MetaVertex.DataModel
 {
-    internal class ResultModelMap : ModelMapBase<ResultModelMap, ResultPropertyMap>
+    internal class ResultModelMap : ModelMapBase<ResultModelMap, ResultPropertyMap, DataColumnAttribute>
     {
         /// <inheritdoc />
         private ResultModelMap(Type modelType)
@@ -21,8 +21,8 @@ namespace MetaVertex.DataModel
         private static ResultModelMap CreateMap(Type modelType)
         {
             var map = new ResultModelMap(modelType);
+
             ApplyAttributes(modelType, map);
-            map.Properties.AddRange(GetPropertyMaps(map, modelType));
 
             return map;
         }
@@ -37,27 +37,21 @@ namespace MetaVertex.DataModel
             map.AutoTrim = attr.AutoTrim;
         }
 
-        private static IEnumerable<ResultPropertyMap> GetPropertyMaps(ResultModelMap modelMap, Type modelType)
+        /// <inheritdoc />
+        protected override ResultPropertyMap CreatePropertyMap(PropertyInfo propInfo, DataColumnAttribute attr)
         {
-            foreach (var (prop, attr) in ModelTools.GetTypePropertyAttributes<DataFieldAttribute>(modelType))
-            {
-                var map = new ResultPropertyMap(prop)
-                {
-                    ColumnName = attr.ColumnName,
-                };
+            var map = new ResultPropertyMap(propInfo, attr);
 
-                var trimmer = new Lazy<AutoTrimValueModifier>(() => new AutoTrimValueModifier());
+            if (AutoTrim || attr.AutoTrim)
+                map.Modifiers.Add(AutoTrimValueModifier.Instance);
 
-                if (modelMap.AutoTrim || attr.AutoTrim)
-                    map.Modifiers.Add(trimmer.Value);
-
-                yield return map;
-            }
+            return map;
         }
 
         internal static void ClearCache()
         {
             ClearCacheImpl();
         }
+
     }
 }

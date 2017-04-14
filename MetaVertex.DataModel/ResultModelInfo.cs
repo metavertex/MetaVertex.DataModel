@@ -13,17 +13,13 @@ namespace MetaVertex.DataModel
     /// <typeparam name="TModel">The type of model for which data will be extracted from the data reader.</typeparam>
     public class ResultModelInfo<TModel>
     {
-        private readonly List<ReaderFieldInfo> _infos;
+        private List<ReaderFieldInfo> _infos;
         private readonly Func<DbDataReader, TModel> _creator;
 
         public ResultModelInfo(DbDataReader reader, Func<DbDataReader, TModel> creator)
         {
             DataReader = reader ?? throw new ArgumentNullException(nameof(reader));
             _creator = creator ?? throw new ArgumentNullException(nameof(creator));
-
-            var map = ResultModelMap.GetMap(typeof(TModel));
-
-            _infos = new List<ReaderFieldInfo>(ReaderFieldInfo.GetInfos(map, reader));
         }
 
         public DbDataReader DataReader { get; }
@@ -32,12 +28,21 @@ namespace MetaVertex.DataModel
         {
             var model = _creator(DataReader);
 
-            foreach (var fieldInfo in _infos)
+            foreach (var fieldInfo in Infos)
             {
                 ApplyFieldInfo(model, fieldInfo);
             }
 
             return model;
+        }
+
+        private IEnumerable<ReaderFieldInfo> Infos
+        {
+            get
+            {
+                var map = ResultModelMap.GetMap(typeof(TModel));
+                return _infos ?? (_infos = new List<ReaderFieldInfo>(ReaderFieldInfo.GetInfos(map, DataReader)));
+            }
         }
 
         private void ApplyFieldInfo(TModel model, ReaderFieldInfo fieldInfo)
