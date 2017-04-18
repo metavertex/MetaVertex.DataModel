@@ -19,6 +19,13 @@ namespace MetaVertex.DataModel
         {
             return new ResultModelInfo<T>(reader, creator);
         }
+
+        public static QueryModelInfo<TModel, TParameter> GetModelInfo<TModel, TParameter>(
+            this IParameterCreator<TModel, TParameter> creator, TModel model)
+            where TParameter : DbParameter
+        {
+            return new QueryModelInfo<TModel, TParameter>(model) { ParameterCreator = creator };
+        }
     }
 
 }
