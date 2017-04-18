@@ -16,10 +16,10 @@ This package is most useful in these scenarios:
 * Working with a database that doesn't make good use of strong types (e.g. it uses strings for date
   input parameters) and therefore needs custom casting / parsing etc.
 
-The main `MetaVertex.DataModel` namespace contains provider-agnostic code.
+The main `MetaVertex.DataModel` library contains provider-agnostic code. It targets **.NET Standard 1.4**.
 
-The `MetaVertex.DataModel.Db2` namespace contains logic specific to the
-[`IBM.Data.DB2.iSeries`](https://www.nuget.org/packages/IBM.Data.DB2.iSeries/) library.
+The `MetaVertex.DataModel.Db2` library contains logic specific to [`IBM.Data.DB2.iSeries`](https://www.nuget.org/packages/IBM.Data.DB2.iSeries/).
+It is written in **.NET 4.6** since the IBM library does not support .NET Standard.
 
 ## Usage
 
