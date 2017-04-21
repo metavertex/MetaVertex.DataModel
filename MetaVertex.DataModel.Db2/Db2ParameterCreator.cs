@@ -12,12 +12,17 @@ namespace MetaVertex.DataModel.Db2
         /// <inheritdoc />
         public virtual iDB2Parameter CreateParameter(QueryPropertyMap map, TModel model)
         {
-            var parm = new iDB2Parameter(map.ParameterName, GetValue(map, model))
+            var parm = new iDB2Parameter(GetParameterName(map, model), GetValue(map, model))
             {
                 Direction = map.ParameterDirection,
             };
 
             return parm;
+        }
+
+        public virtual string GetParameterName(QueryPropertyMap map, TModel model)
+        {
+            return "@" + map.ParameterName;
         }
 
         public virtual object GetValue(QueryPropertyMap map, TModel model)
