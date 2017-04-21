@@ -27,5 +27,7 @@ namespace MetaVertex.DataModel
             : base(message, innerException)
         {
         }
+
+        public int ErrorCount { get; internal set; }
     }
 }

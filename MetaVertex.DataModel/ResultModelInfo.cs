@@ -28,12 +28,22 @@ namespace MetaVertex.DataModel
         {
             var model = _creator(DataReader);
 
+            var errors = new List<string>();
+
             foreach (var fieldInfo in Infos)
             {
-                ApplyFieldInfo(model, fieldInfo);
+                ApplyFieldInfo(model, fieldInfo, errors);
             }
 
-            return model;
+            if (!errors.Any())
+                return model;
+
+            const string msg = "An error occurred trying to create an object of type '{0}': {1}";
+
+            throw new DataModelException(string.Format(msg, typeof(TModel).Name, string.Join("; ", errors)))
+            {
+                ErrorCount = errors.Count
+            };
         }
 
         private IEnumerable<ReaderFieldInfo> Infos
@@ -45,7 +55,7 @@ namespace MetaVertex.DataModel
             }
         }
 
-        private void ApplyFieldInfo(TModel model, ReaderFieldInfo fieldInfo)
+        private void ApplyFieldInfo(TModel model, ReaderFieldInfo fieldInfo, List<string> errors)
         {
             var value = DataReader.GetValue(fieldInfo.ColumnIndex);
 
@@ -58,11 +68,11 @@ namespace MetaVertex.DataModel
             }
             catch (ArgumentException ex)
             {
-                const string msg = "Could not set property '{0}' to value '{1}' from column '{2}' of type '{3}' ({4})";
+                const string msg = "Could not set property '{0}' to value '{1}' from column '{2}' of type '{3}' ({4}): {5}";
 
-                throw new InvalidOperationException(string.Format(msg, fieldInfo.PropertyMap.PropertyName, value,
+                errors.Add(string.Format(msg, fieldInfo.PropertyMap.PropertyName, value,
                     fieldInfo.PropertyMap.ColumnName, DataReader.GetFieldType(fieldInfo.ColumnIndex),
-                    DataReader.GetDataTypeName(fieldInfo.ColumnIndex)), ex);
+                    DataReader.GetDataTypeName(fieldInfo.ColumnIndex), ex.Message));
             }
         }
 
