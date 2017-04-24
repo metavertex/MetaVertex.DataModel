@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net461</TargetFramework>
+    <AssemblyName>db2-model-design</AssemblyName>
+    <VersionPrefix>0.2.0</VersionPrefix>
+    <Company>MetaVertex</Company>
+    <Authors>Toby Johnson</Authors>
+    <Description>Generate strongly-typed DB2 data models</Description>
+    <Copyright>Copyright 2017</Copyright>
+    <PackageLicenseUrl>https://github.com/metavertex/MetaVertex.DataModel/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/metavertex/MetaVertex.DataModel</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/metavertex/MetaVertex.DataModel</RepositoryUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Humanizer" Version="2.1.0" />
+    <PackageReference Include="IBM.Data.DB2.iSeries" Version="7.1.0" />
+    <PackageReference Include="MetaVertex.DataModel.Db2" Version="0.2.0-a025" />
+  </ItemGroup>
+</Project>
