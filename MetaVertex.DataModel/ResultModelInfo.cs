@@ -59,6 +59,9 @@ namespace MetaVertex.DataModel
         {
             var value = DataReader.GetValue(fieldInfo.ColumnIndex);
 
+            if (value is DBNull)
+                value = null;
+
             value = fieldInfo.PropertyMap.Modifiers.Aggregate(value,
                 (current, modifier) => modifier.ModifyValue(current, fieldInfo));
 
