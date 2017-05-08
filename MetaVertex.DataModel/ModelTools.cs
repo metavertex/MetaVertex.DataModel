@@ -6,7 +6,10 @@ using System.Text;
 
 namespace MetaVertex.DataModel
 {
-    internal static class ModelTools
+    /// <summary>
+    /// Static methods for inspecting properties on POCO models using reflection.
+    /// </summary>
+    public static class ModelTools
     {
         public static IEnumerable<PropertyAttribute<TAttribute>> GetTypePropertyAttributes<TAttribute, TModel>()
             where TAttribute : Attribute
