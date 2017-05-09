@@ -45,7 +45,7 @@ namespace MetaVertex.DataModel.Tests
             var type = typeof(TestQueryModel);
             var map = GetRequiredQueryModelMap(type);
             Assert.Equal(type, map.ModelType);
-            Assert.Equal(4, map.PropertyMaps.Count);
+            Assert.Equal(5, map.PropertyMaps.Count);
 
             bool HasMatchingProperty(string propertyName, string parameterName, int index)
             {

@@ -9,16 +9,16 @@ namespace MetaVertex.DataModel
     /// Creates a DbParameter from a value on a QueryModel of type <typeparamref name="TModel"/>.
     /// </summary>
     /// <typeparam name="TModel">
-    /// The type of the QueryModel whose values will be mapped to/from <see cref="TParameter"/> instances.
+    /// The type of the QueryModel whose values will be mapped to <see cref="TParameter"/> instances.
     /// </typeparam>
     /// <typeparam name="TParameter">
-    /// The type of <see cref="DbParameter"/> derived parameter which will be mapped to/from <see cref="TModel"/>.
+    /// The type of <see cref="DbParameter"/> derived parameter which will be created from <see cref="TModel"/> values.
     /// </typeparam>
     public interface IParameterCreator<in TModel, out TParameter>
         where TParameter : DbParameter
     {
         /// <summary>
-        /// Called to create a <see cref="DbParameter"/> from the specified mapping values and model.
+        /// Called to create a <see cref="TParameter"/> from the specified mapping values and model.
         /// If the method returns null, a <see cref="DataModelException"/> will be thrown indicating
         /// that the parameter could not be created.
         /// </summary>
@@ -34,5 +34,4 @@ namespace MetaVertex.DataModel
     public interface IParameterCreator<in TModel> : IParameterCreator<TModel, DbParameter>
     {
     }
-
 }
