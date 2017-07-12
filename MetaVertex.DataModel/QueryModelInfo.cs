@@ -58,6 +58,7 @@ namespace MetaVertex.DataModel
 
         public IParameterCreator<TModel, TParameter> ParameterCreator { get; set; }
 
+        // TODO combine IParameterCreator / IParameterRetriever into IParameterMapper
         public IParameterRetriever<TModel, TParameter> ParameterRetriever { get; set; } =
             new DefaultParameterRetriever<TModel>();
     }

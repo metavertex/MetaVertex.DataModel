@@ -14,6 +14,14 @@ namespace MetaVertex.DataModel
         /// <inheritdoc />
         public void SetModelValue(QueryPropertyMap map, DbParameter parameter, TModel model)
         {
+            DefaultParameterRetriever.SetModelValue(map, parameter, model);
+        }
+    }
+
+    public static class DefaultParameterRetriever
+    {
+        public static void SetModelValue(QueryPropertyMap map, DbParameter parameter, object model)
+        {
             var value = parameter.Value;
 
             if (value == DBNull.Value)
