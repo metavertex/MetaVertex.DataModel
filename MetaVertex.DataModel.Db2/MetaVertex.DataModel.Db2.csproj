@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
-    <VersionPrefix>0.2.0</VersionPrefix>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <VersionPrefix>0.3.0</VersionPrefix>
     <Company>MetaVertex</Company>
     <Authors>Toby Johnson</Authors>
     <Description>Create strongly-typed data models from IBM.Data.DB2.iSeries.iDB2DataReader</Description>
@@ -12,6 +12,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="IBM.Data.DB2.iSeries" Version="7.1.0" />
-    <PackageReference Include="MetaVertex.DataModel" Version="0.2.0-a031" />
+    <PackageReference Include="MetaVertex.DataModel" Version="0.3.0-a032" />
   </ItemGroup>
 </Project>
