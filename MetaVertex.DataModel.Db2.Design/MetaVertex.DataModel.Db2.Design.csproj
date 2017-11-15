@@ -15,6 +15,6 @@
   <ItemGroup>
     <PackageReference Include="Humanizer" Version="2.2.0" />
     <PackageReference Include="IBM.Data.DB2.iSeries" Version="7.1.0" />
-    <PackageReference Include="MetaVertex.DataModel.Db2" Version="0.2.0-a025" />
+    <PackageReference Include="MetaVertex.DataModel.Db2" Version="0.3.0-a032" />
   </ItemGroup>
 </Project>
