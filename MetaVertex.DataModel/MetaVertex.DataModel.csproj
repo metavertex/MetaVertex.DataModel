@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <VersionPrefix>0.3.0</VersionPrefix>
+    <VersionPrefix>0.3.1</VersionPrefix>
     <Company>MetaVertex</Company>
     <Authors>Toby Johnson</Authors>
     <Description>Create strongly-typed data models from DbDataReader</Description>

@@ -3,7 +3,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp20</TargetFramework>
     <AssemblyName>db2-model-design</AssemblyName>
-    <VersionPrefix>0.3.0</VersionPrefix>
+    <VersionPrefix>0.3.1</VersionPrefix>
     <Company>MetaVertex</Company>
     <Authors>Toby Johnson</Authors>
     <Description>Generate strongly-typed DB2 data models</Description>
@@ -15,6 +15,6 @@
   <ItemGroup>
     <PackageReference Include="Humanizer" Version="2.2.0" />
     <PackageReference Include="IBM.Data.DB2.iSeries" Version="7.1.0" />
-    <PackageReference Include="MetaVertex.DataModel.Db2" Version="0.3.0-a032" />
+    <PackageReference Include="MetaVertex.DataModel.Db2" Version="0.3.1" />
   </ItemGroup>
 </Project>
